@@ -1,86 +1,12 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
+import React from 'react';
 import Layout from '@/components/layout/Layout';
 import SectionHeader from '@/components/ui/section-header';
-import BookingForm from '@/components/ui/booking-form';
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
-import { toast } from '@/hooks/use-toast';
-import { handleError } from '@/lib/error-handler';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { useTheme } from '@/hooks/use-theme';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-
-const contactSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().optional(),
-  subject: z.string().optional(),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
 
 const Contact = () => {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const form = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-    },
-  });
-
-  const onSubmit = async (data: ContactFormData) => {
-    setIsSubmitting(true);
-    try {
-      const { error } = await supabase.from('contact_submissions').insert([
-        {
-          name: data.name,
-          email: data.email,
-          phone: data.phone || null,
-          subject: data.subject || null,
-          message: data.message,
-          status: 'new',
-        },
-      ]);
-
-      if (error) throw error;
-
-      toast({
-        title: 'Message Sent',
-        description: 'Thank you for contacting us. We will get back to you soon.',
-      });
-
-      form.reset();
-    } catch (error: any) {
-      const safeMessage = handleError(error, 'Contact Form Submission');
-      toast({
-        title: 'Submission Failed',
-        description: safeMessage,
-        variant: 'destructive',
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <Layout>
@@ -99,7 +25,7 @@ const Contact = () => {
       {/* Contact Information Section */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="max-w-3xl mx-auto">
             <div className="space-y-8">
               <SectionHeader 
                 title="Get In Touch" 
@@ -163,96 +89,6 @@ const Contact = () => {
                   </a>
                 </div>
               </div>
-
-              {/* Contact Form */}
-              <div className={`${isDark ? 'bg-peak-gray-800' : 'bg-white'} rounded-xl shadow-lg p-8 mt-8`}>
-                <h3 className="text-2xl font-medium mb-6">Send us a Message</h3>
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                    <FormField
-                      control={form.control}
-                      name="name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Name</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Your name" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email</FormLabel>
-                          <FormControl>
-                            <Input type="email" placeholder="your@email.com" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="phone"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Phone (Optional)</FormLabel>
-                          <FormControl>
-                            <Input placeholder="+91 98765 43210" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="subject"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Subject (Optional)</FormLabel>
-                          <FormControl>
-                            <Input placeholder="What is this about?" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="message"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Message</FormLabel>
-                          <FormControl>
-                            <Textarea
-                              placeholder="Your message..."
-                              className="min-h-[120px]"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <Button type="submit" className="w-full" disabled={isSubmitting}>
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
-                    </Button>
-                  </form>
-                </Form>
-              </div>
-            </div>
-            
-            <div>
-              <BookingForm />
             </div>
           </div>
         </div>
