@@ -1,0 +1,10 @@
+/* This file has been refactored into more specific files:
+ * - cursor-utilities.css (cursor styles and effects)
+ * - interaction-utilities.css (hover, magnetic effects)
+ * - text-utilities.css (text styling and shadows)
+ * - scroll-utilities.css (scrollbar, scroll behavior)
+ * - visual-effects.css (backgrounds, separators)
+ */
+
+/* This empty file is kept for backward compatibility.
+   Import the specific utility files directly instead. */

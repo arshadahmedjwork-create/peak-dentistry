@@ -1,0 +1,28 @@
+
+@tailwind components;
+
+@layer components {
+  .nav-link {
+    @apply relative text-black hover:text-black font-medium transition-colors duration-300
+    after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-black
+    after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  .dark .nav-link {
+    @apply text-white hover:text-white after:bg-white;
+  }
+
+  /* Animated link underline effect */
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-current transition-all duration-300 ease-in-out;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+}

@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peak Smile Design Hub</title>
+    <meta name="description" content="Premium dental care services with a focus on comfort, technology, and exceptional results" />
+    <meta name="author" content="Peak Dentistry" />
+    <link rel="icon" href="/lovable-uploads/5a8bb037-3da9-4a17-92c7-9452dea12a35.png" type="image/png" />
+
+    <meta property="og:title" content="Peak Smile Design Hub" />
+    <meta property="og:description" content="Premium dental care services with a focus on comfort, technology, and exceptional results" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@peak_dentistry" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <!-- Theme detection with improved handling -->
+    <script>
+      // Apply stored theme immediately to avoid flash
+      const storedTheme = localStorage.getItem('theme') || 
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.classList.add(storedTheme);
+      document.documentElement.setAttribute('data-theme', storedTheme);
+      
+      // Set favicon based on theme
+      const faviconPath = storedTheme === 'dark' 
+        ? "/lovable-uploads/269f56a7-f61d-4578-99e4-075f5fc6f5fe.png" 
+        : "/lovable-uploads/5a8bb037-3da9-4a17-92c7-9452dea12a35.png";
+      
+      // Create link element if it doesn't exist
+      let faviconLink = document.querySelector("link[rel='icon']");
+      if (!faviconLink) {
+        faviconLink = document.createElement('link');
+        faviconLink.rel = 'icon';
+        faviconLink.type = 'image/png';
+        document.head.appendChild(faviconLink);
+      }
+      
+      faviconLink.href = faviconPath;
+      
+      // Add base styles to improve text visibility during initial load
+      document.write(`
+        <style>
+          body {
+            font-family: 'Inter', 'Space Grotesk', 'Satoshi', sans-serif;
+            line-height: 1.6;
+          }
+          
+          html.dark {
+            color-scheme: dark;
+          }
+          
+          html.dark body {
+            background-color: #000;
+            color: #fff;
+          }
+          
+          html.light body {
+            background-color: #fff;
+            color: #000;
+          }
+          
+          /* Improved text visibility during initial load */
+          .dark .text-white {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+          }
+        </style>
+      `);
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+
+@tailwind components;
+
+@layer components {
+  .premium-card {
+    @apply relative overflow-hidden rounded-xl p-6 transition-all duration-500 bg-white text-black dark:bg-black dark:text-white;
+  }
+  
+  .premium-card:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+  }
+  
+  .premium-card:hover:before {
+    left: 100%;
+  }
+
+  /* Interactive cards */
+  .interactive-card {
+    @apply rounded-xl overflow-hidden relative transition-all duration-300;
+  }
+
+  .interactive-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-b from-transparent to-black/50 opacity-0 transition-opacity duration-300;
+  }
+
+  .interactive-card:hover::before {
+    @apply opacity-100;
+  }
+
+  .interactive-card .card-content {
+    @apply absolute bottom-0 left-0 right-0 p-5 transform translate-y-8 opacity-0 transition-all duration-300;
+  }
+
+  .interactive-card:hover .card-content {
+    @apply transform translate-y-0 opacity-100;
+  }
+
+  /* Glowing border effect */
+  .glow-border {
+    @apply relative rounded-xl overflow-hidden;
+  }
+
+  .glow-border::before {
+    content: '';
+    @apply absolute -inset-0.5 bg-gradient-to-r from-black via-white to-black opacity-0 transition-opacity duration-300 blur-md;
+    animation: rotate 2s linear infinite;
+  }
+
+  .glow-border:hover::before {
+    @apply opacity-70;
+  }
+
+  .dark .glow-border::before {
+    @apply bg-gradient-to-r from-white via-black to-white;
+  }
+
+  .glow-border-content {
+    @apply relative bg-white rounded-xl z-10;
+  }
+}

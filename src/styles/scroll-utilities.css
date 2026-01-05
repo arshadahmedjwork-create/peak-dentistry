@@ -1,0 +1,58 @@
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #000000;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #000000;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+
+/* Content reveal on scroll classes */
+.reveal-on-scroll {
+  visibility: hidden;
+}
+
+.reveal-on-scroll.revealed {
+  visibility: visible;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Adjust for fixed header */
+}
+
+/* Custom snap scroll */
+.snap-scroll-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.snap-scroll-section {
+  scroll-snap-align: start;
+  height: 100vh;
+}

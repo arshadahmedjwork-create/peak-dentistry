@@ -1,0 +1,180 @@
+
+@tailwind utilities;
+
+/* Enhanced Text Animations with smoother transitions */
+.text-wave {
+  display: inline-block;
+  transform: translateY(0);
+  animation: text-wave 2.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.text-typewriter {
+  overflow: hidden;
+  border-right: 2px solid;
+  white-space: nowrap;
+  animation: 
+    typewriter 3.5s steps(40, end) 1s forwards, 
+    blink-caret 0.75s step-end infinite;
+  max-width: fit-content;
+}
+
+.text-shimmer {
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0) 0%, 
+    rgba(255,255,255,0.8) 50%, 
+    rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  will-change: background-position;
+}
+
+.dark .text-shimmer {
+  background: linear-gradient(90deg, 
+    rgba(0,0,0,0) 0%, 
+    rgba(255,255,255,1) 50%, 
+    rgba(0,0,0,0) 100%);
+  background-size: 200% 100%;
+}
+
+/* Enhanced gradient text with better color transitions */
+.gradient-text {
+  @apply bg-gradient-to-r from-peak-black via-peak-gray-700 to-peak-black bg-clip-text text-transparent;
+  background-size: 200% 100%;
+  animation: gradient-shift 8s ease infinite;
+  will-change: background-position;
+}
+
+.dark .gradient-text {
+  @apply bg-gradient-to-r from-white via-peak-gray-300 to-white bg-clip-text text-transparent;
+}
+
+/* New reveal text animation */
+.reveal-text {
+  position: relative;
+  color: transparent;
+}
+
+.reveal-text::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: currentColor;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: reveal-text 2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+/* Multi-line text reveal animation */
+.text-reveal-lines {
+  overflow: hidden;
+}
+
+.text-reveal-lines span {
+  display: block;
+  transform: translateY(100%);
+  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.text-reveal-lines.revealed span {
+  transform: translateY(0);
+}
+
+.text-reveal-lines span:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.text-reveal-lines span:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+/* Character-by-character reveal animation */
+.char-reveal {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: char-appear 0.5s forwards;
+}
+
+/* Enhanced Text animation keyframes with better timing */
+@keyframes text-wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: currentColor;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes reveal-text {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes char-appear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* New focus text effect */
+.focus-text {
+  transition: all 0.3s ease;
+}
+
+.focus-text:hover {
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark .focus-text:hover {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}

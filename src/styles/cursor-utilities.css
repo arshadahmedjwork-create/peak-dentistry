@@ -1,0 +1,57 @@
+
+/* Cursor styles - Only hide default cursor on specific elements */
+.cursor-none {
+  cursor: none !important;
+}
+
+.cursor-pointer-glow {
+  cursor: pointer !important;
+}
+
+/* Mountain cursor animation */
+.mountain-cursor-animation {
+  transform-origin: center;
+  animation: cursor-float 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes cursor-float {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.05) rotate(5deg);
+  }
+}
+
+.cursor-peak {
+  filter: drop-shadow(0 0 8px rgba(0,0,0,0.3));
+  transition: all 0.2s ease;
+}
+
+.dark .cursor-peak {
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
+}
+
+/* Pulse glow animation for icons */
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.6));
+  }
+}
+
+.dark @keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}

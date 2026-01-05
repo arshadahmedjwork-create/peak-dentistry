@@ -1,0 +1,42 @@
+
+@tailwind components;
+
+@layer components {
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-md;
+  }
+  
+  .glass-dark {
+    @apply bg-black/10 backdrop-blur-md border border-black/10 shadow-md;
+  }
+
+  .container-custom {
+    @apply w-full max-w-[1400px] mx-auto px-6;
+  }
+
+  .section-padding {
+    @apply py-24 md:py-32;
+  }
+
+  .animate-on-scroll {
+    @apply opacity-0;
+  }
+  
+  .futuristic-border {
+    @apply relative;
+  }
+  
+  .futuristic-border:after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #000, transparent);
+  }
+
+  .dark .futuristic-border:after {
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+  }
+}

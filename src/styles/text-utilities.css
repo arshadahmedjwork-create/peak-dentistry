@@ -1,0 +1,137 @@
+
+@tailwind utilities;
+
+@layer utilities {
+  /* Enhanced text shadow utilities with stronger shadows for better readability */
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+
+  .text-shadow-md {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  .text-shadow-xl {
+    text-shadow: 0 8px 16px rgba(0, 0, 0, 0.7), 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  /* High contrast text with stronger shadows for maximum visibility */
+  .text-contrast-white {
+    color: white;
+    text-shadow: 
+      0 1px 4px rgba(0, 0, 0, 0.8),
+      0 2px 8px rgba(0, 0, 0, 0.6);
+  }
+
+  .text-contrast-black {
+    color: black;
+    text-shadow: 
+      0 1px 4px rgba(255, 255, 255, 0.8),
+      0 2px 8px rgba(255, 255, 255, 0.6);
+  }
+
+  /* Improved adaptive contrast text with better transitions */
+  .adaptive-text {
+    @apply dark:text-white dark:text-shadow-md text-peak-black transition-colors duration-300;
+  }
+
+  /* Enhanced gradient text with stronger contrast and animations */
+  .gradient-text {
+    @apply bg-gradient-to-r from-black to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent dark:text-shadow-sm;
+    background-size: 200% auto;
+    animation: shine 3s linear infinite;
+  }
+
+  @keyframes shine {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  /* Dark theme specific text enhancements with better visibility */
+  .dark-theme-text {
+    @apply dark:text-white dark:text-shadow-md transition-colors duration-300;
+  }
+
+  /* Light theme specific text enhancements with improved contrast */
+  .light-theme-text {
+    @apply text-peak-black transition-colors duration-300;
+  }
+
+  /* Enhanced heading styles with better spacing and readability */
+  .heading-1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight dark:text-white dark:text-shadow-lg text-peak-black tracking-tight;
+  }
+
+  .heading-2 {
+    @apply text-3xl md:text-4xl font-bold leading-tight dark:text-white dark:text-shadow-md text-peak-black tracking-tight;
+  }
+
+  .heading-3 {
+    @apply text-2xl md:text-3xl font-semibold leading-snug dark:text-white dark:text-shadow-md text-peak-black tracking-tight;
+  }
+
+  /* Improved body text styles with better spacing and contrast */
+  .body-large {
+    @apply text-xl leading-relaxed dark:text-white dark:text-shadow-sm text-peak-black;
+  }
+
+  .body-normal {
+    @apply text-base leading-relaxed dark:text-white dark:text-shadow-sm text-peak-black;
+  }
+
+  .body-small {
+    @apply text-sm leading-relaxed dark:text-white dark:text-shadow-sm text-peak-black;
+  }
+
+  /* Enhanced underline animation with better visibility and timing */
+  .animated-underline {
+    position: relative;
+    display: inline-block;
+  }
+
+  .animated-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    @apply bg-black dark:bg-white;
+    transform-origin: bottom right;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .animated-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  
+  /* High-visibility text for dark backgrounds */
+  .text-highlight {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .text-highlight::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: -0.25em;
+    right: -0.25em;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 0.25em;
+    transform: skewX(-8deg);
+  }
+  
+  .dark .text-highlight::before {
+    background-color: rgba(255,255,255,0.1);
+  }
+}

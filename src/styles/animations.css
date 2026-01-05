@@ -1,0 +1,10 @@
+/* This file has been refactored into more specific files:
+ * - basic-animations.css (fade, slide, scale)
+ * - text-animations.css (typewriter, wave, shimmer)
+ * - scroll-animations.css (scroll-triggered animations)
+ * - hover-animations.css (hover effects)
+ * - premium-animations.css (specialty animations)
+ */
+
+/* This empty file is kept for backward compatibility.
+   Import the specific animation files directly instead. */

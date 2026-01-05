@@ -1,0 +1,13 @@
+@tailwind components;
+
+/* This file has been refactored into more specific files:
+ * - button-styles.css
+ * - card-styles.css
+ * - link-styles.css
+ * - layout-styles.css
+ * - effects-styles.css
+ */
+
+@layer components {
+  /* Empty file kept for backward compatibility */
+}
