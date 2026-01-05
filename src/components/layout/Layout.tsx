@@ -58,7 +58,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <Link to="/admin">
             <Button 
               variant="outline" 
-              className={`rounded-full ${theme === 'dark' ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-100'} shadow-lg`}
+              className={`rounded-full ${theme === 'dark' ? 'bg-gray-800 hover:bg-gray-700 text-white' : 'bg-black hover:bg-gray-900 text-white border-black'} shadow-lg`}
             >
               <Shield className="mr-2 h-4 w-4" />
               Admin Portal

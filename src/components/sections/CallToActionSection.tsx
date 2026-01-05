@@ -46,12 +46,7 @@ const CallToActionSection = () => {
   };
   
   const handleSchedule = () => {
-    toast({
-      title: "Schedule Appointment",
-      description: "Opening our appointment calendar.",
-      duration: 3000,
-    });
-    document.getElementById('booking-section')?.scrollIntoView({ behavior: 'smooth' });
+    window.location.href = '/patient-portal';
   };
 
   return (

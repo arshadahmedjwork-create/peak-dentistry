@@ -9,7 +9,6 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import GallerySection from '@/components/sections/GallerySection';
 import BlogPreviewSection from '@/components/sections/BlogPreviewSection';
 import ClinicInfoSection from '@/components/sections/ClinicInfoSection';
-import BookingSection from '@/components/sections/BookingSection';
 import CallToActionSection from '@/components/sections/CallToActionSection';
 import { ScrollToTop } from '@/components/ui/scroll-to-top';
 import CoreValuesSection from '@/components/sections/CoreValuesSection';
@@ -205,7 +204,6 @@ const Index = () => {
       <TestimonialsSection />
       <ClinicInfoSection />
       <BlogPreviewSection />
-      <BookingSection />
       <CallToActionSection />
       <ScrollToTop />
     </Layout>

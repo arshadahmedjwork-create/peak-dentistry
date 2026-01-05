@@ -83,7 +83,7 @@ const HeroSection = () => {
             
             {/* Enhanced button section with better animations */}
             <div className="flex flex-wrap gap-6 stagger-children visible">
-              <Link to="/contact" className="hover-pulse-highlight">
+              <Link to="/patient-portal" className="hover-pulse-highlight">
                 <Button 
                   ref={bookButtonRef} 
                   className="btn-primary px-8 py-6 text-lg flex items-center gap-3 button-3d ripple-button"
