@@ -25,23 +25,22 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
 
-  const logoSrc = theme === 'dark' 
-    ? "/lovable-uploads/269f56a7-f61d-4578-99e4-075f5fc6f5fe.png" 
+  const logoSrc = theme === 'dark'
+    ? "/lovable-uploads/269f56a7-f61d-4578-99e4-075f5fc6f5fe.png"
     : "/lovable-uploads/5a8bb037-3da9-4a17-92c7-9452dea12a35.png";
 
   return (
-    <header 
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled 
-          ? `py-3 ${theme === 'dark' ? 'bg-black/95' : 'bg-white/95'} backdrop-blur-md shadow-md` 
-          : 'py-5 bg-transparent'
-      }`}
+    <header
+      className={`fixed w-full z-50 transition-all duration-300 ${scrolled
+        ? `py-3 ${theme === 'dark' ? 'bg-black/95' : 'bg-white/95'} backdrop-blur-md shadow-md`
+        : 'py-5 bg-transparent'
+        }`}
     >
       <div className="container-custom flex items-center justify-between">
         <NavLink to="/" className="flex items-center">
-          <img 
+          <img
             src={logoSrc}
-            alt="PEAK DENTISTRY" 
+            alt="PEAK DENTISTRY"
             className="h-12 md:h-14"
           />
         </NavLink>
@@ -56,7 +55,7 @@ const Navbar = () => {
           <Button onClick={toggleTheme} size="icon" variant="ghost" className="ml-2">
             {theme === 'dark' ? <Sun size={20} className="text-white" /> : <Moon size={20} />}
           </Button>
-          <Link to="/contact">
+          <Link to="/patient-portal">
             <Button className="btn-primary flex items-center gap-2">
               <Phone size={16} />
               Book Appointment
@@ -73,20 +72,20 @@ const Navbar = () => {
             onClick={toggleMenu}
             aria-label="Toggle menu"
           >
-            {isOpen ? <X size={24} className={theme === 'dark' ? 'text-white' : ''} /> : 
-            <Menu size={24} className={theme === 'dark' ? 'text-white' : ''} />}
+            {isOpen ? <X size={24} className={theme === 'dark' ? 'text-white' : ''} /> :
+              <Menu size={24} className={theme === 'dark' ? 'text-white' : ''} />}
           </button>
         </div>
 
-        <div 
+        <div
           className={`fixed inset-0 ${theme === 'dark' ? 'bg-peak-black' : 'bg-peak-white'} z-40 flex flex-col justify-center items-center space-y-8 
           transition-all duration-300 ease-in-out transform lg:hidden
           ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
         >
           <div className="mb-10">
-            <img 
+            <img
               src={logoSrc}
-              alt="PEAK DENTISTRY" 
+              alt="PEAK DENTISTRY"
               className="h-16"
             />
           </div>
@@ -96,7 +95,7 @@ const Navbar = () => {
           <NavLink to="/about" className="text-2xl font-medium dark-theme-text" onClick={closeMenu}>About Us</NavLink>
           <NavLink to="/blog" className="text-2xl font-medium dark-theme-text" onClick={closeMenu}>Blog</NavLink>
           <NavLink to="/contact" className="text-2xl font-medium dark-theme-text" onClick={closeMenu}>Contact</NavLink>
-          <Link to="/contact" onClick={closeMenu}>
+          <Link to="/patient-portal" onClick={closeMenu}>
             <Button className="btn-primary mt-6 flex items-center gap-2">
               <Phone size={16} />
               Book Appointment

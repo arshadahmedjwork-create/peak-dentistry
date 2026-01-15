@@ -15,11 +15,11 @@ const Footer = () => {
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
-            <div className="mb-6">
+            <div className="mb-6 flex flex-col items-start">
               <img
                 src={logoSrc}
                 alt="PEAK DENTISTRY"
-                className="h-14"
+                className="h-14 object-contain"
               />
             </div>
             <p className="mb-6 text-peak-gray-300 max-w-xs">

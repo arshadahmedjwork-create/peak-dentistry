@@ -1,13 +1,12 @@
-
 @tailwind components;
 
 @layer components {
   .premium-card {
-  .premium-card {
-    @apply relative overflow-hidden rounded-xl p-6 transition-all duration-500 bg-card text-card-foreground border border-border/50 shadow-sm hover:shadow-md;
+    .premium-card {
+      @apply relative overflow-hidden rounded-xl p-6 transition-all duration-500 bg-card text-card-foreground border border-border/50 shadow-sm hover:shadow-md;
+    }
   }
-  }
-  
+
   .premium-card:before {
     content: "";
     position: absolute;
@@ -15,34 +14,27 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
     transition: 0.5s;
   }
-  
+
   .premium-card:hover:before {
     left: 100%;
   }
 
-  /* Interactive cards */
+  /* Interactive cards - Simplified to remove text overlap */
   .interactive-card {
     @apply rounded-xl overflow-hidden relative transition-all duration-300;
   }
 
   .interactive-card::before {
     content: '';
-    @apply absolute inset-0 bg-gradient-to-b from-transparent to-black/50 opacity-0 transition-opacity duration-300;
+    @apply absolute inset-0 bg-transparent transition-colors duration-300;
   }
 
-  .interactive-card:hover::before {
-    @apply opacity-100;
-  }
-
+  /* Removed hover transform/opacity effects that caused readability issues */
   .interactive-card .card-content {
-    @apply absolute bottom-0 left-0 right-0 p-5 transform translate-y-8 opacity-0 transition-all duration-300;
-  }
-
-  .interactive-card:hover .card-content {
-    @apply transform translate-y-0 opacity-100;
+    @apply relative translate-y-0 opacity-100;
   }
 
   /* Glowing border effect */
