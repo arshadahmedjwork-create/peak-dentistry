@@ -93,7 +93,7 @@ const Signup = () => {
                     <Input
                       id="firstName"
                       name="firstName"
-                      placeholder="John"
+                      placeholder="Enter first name"
                       value={formData.firstName}
                       onChange={handleChange}
                       className="pl-10"
@@ -110,7 +110,7 @@ const Signup = () => {
                   <Input
                     id="lastName"
                     name="lastName"
-                    placeholder="Doe"
+                    placeholder="Enter last name"
                     value={formData.lastName}
                     onChange={handleChange}
                     disabled={loading || authLoading}
@@ -129,7 +129,7 @@ const Signup = () => {
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="your.email@example.com"
+                    placeholder="Enter your email"
                     value={formData.email}
                     onChange={handleChange}
                     className="pl-10"
@@ -149,7 +149,7 @@ const Signup = () => {
                     id="phone"
                     name="phone"
                     type="tel"
-                    placeholder="+1 (555) 000-0000"
+                    placeholder="Enter phone number"
                     value={formData.phone}
                     onChange={handleChange}
                     className="pl-10"

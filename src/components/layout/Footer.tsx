@@ -6,8 +6,8 @@ import { useTheme } from '@/hooks/use-theme';
 
 const Footer = () => {
   const { theme } = useTheme();
-  const logoSrc = theme === 'dark' 
-    ? "/lovable-uploads/269f56a7-f61d-4578-99e4-075f5fc6f5fe.png" 
+  const logoSrc = theme === 'dark'
+    ? "/lovable-uploads/269f56a7-f61d-4578-99e4-075f5fc6f5fe.png"
     : "/lovable-uploads/5a8bb037-3da9-4a17-92c7-9452dea12a35.png";
 
   return (
@@ -16,9 +16,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <div className="mb-6">
-              <img 
-                src={logoSrc} 
-                alt="PEAK DENTISTRY" 
+              <img
+                src={logoSrc}
+                alt="PEAK DENTISTRY"
                 className="h-14"
               />
             </div>
@@ -26,16 +26,16 @@ const Footer = () => {
               Luxury smile makeovers by award-winning specialists, delivered with care that's deeply personal.
             </p>
             <div className="flex space-x-4">
-              <a href="https://facebook.com" className="text-white hover:text-peak-gray-300 transition-colors">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-peak-gray-300 transition-colors">
                 <Facebook size={20} />
               </a>
-              <a href="https://instagram.com" className="text-white hover:text-peak-gray-300 transition-colors">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-peak-gray-300 transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="https://linkedin.com" className="text-white hover:text-peak-gray-300 transition-colors">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-peak-gray-300 transition-colors">
                 <Linkedin size={20} />
               </a>
-              <a href="https://twitter.com" className="text-white hover:text-peak-gray-300 transition-colors">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-peak-gray-300 transition-colors">
                 <Twitter size={20} />
               </a>
             </div>

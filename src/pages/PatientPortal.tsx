@@ -22,7 +22,7 @@ const PatientPortalPage = () => {
       }
     }
   };
-  
+
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -37,47 +37,46 @@ const PatientPortalPage = () => {
 
   return (
     <Layout>
-      <div className="container-custom py-28">
-        <motion.div 
+      <div className="container-custom pt-32 pb-28 relative z-10">
+        <motion.div
           className="text-center mb-16"
           initial="hidden"
           animate="visible"
           variants={containerVariants}
         >
-          <motion.h1 
-            className={`text-4xl md:text-5xl font-bold mb-6 ${isDark ? 'text-white text-shadow-xl' : ''}`}
+          <motion.h1
+            className={`text-4xl md:text-5xl font-bold mb-6 ${isDark ? 'text-white text-shadow-xl' : 'text-peak-black'}`}
             variants={itemVariants}
           >
             Patient Portal
           </motion.h1>
-          <motion.p 
+          <motion.p
             className={`text-xl max-w-3xl mx-auto ${isDark ? 'text-white text-shadow-lg' : 'text-muted-foreground'}`}
             variants={itemVariants}
           >
             Explore our innovative tools designed to enhance your dental experience and help you make informed decisions about your oral health.
           </motion.p>
-          
+
           {/* Feature tags */}
-          <motion.div 
+          <motion.div
             className="flex flex-wrap justify-center gap-2 mt-8"
             variants={itemVariants}
           >
             {['Patient Portal', 'Virtual Consultations', 'Interactive Tools', 'Digital Records'].map((tag, index) => (
-              <span 
-                key={index} 
-                className={`px-4 py-1.5 rounded-full text-sm font-medium ${
-                  isDark 
-                    ? 'bg-white/10 text-white' 
+              <span
+                key={index}
+                className={`px-4 py-1.5 rounded-full text-sm font-medium ${isDark
+                    ? 'bg-white/10 text-white'
                     : 'bg-black/5 text-peak-black'
-                } hover-lift`}
+                  } hover-lift`}
               >
                 {tag}
               </span>
             ))}
           </motion.div>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className="mt-10"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -85,8 +84,8 @@ const PatientPortalPage = () => {
         >
           <PatientPortal />
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className="mt-28"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -96,13 +95,13 @@ const PatientPortalPage = () => {
             <Info className="h-5 w-5" />
             <AlertTitle className={`${isDark ? 'text-white' : ''} mb-2`}>Have a Suggestion?</AlertTitle>
             <AlertDescription className={`${isDark ? 'text-peak-gray-200' : ''} mb-4`}>
-              We value your feedback! If you have ideas for new features or improvements to enhance your dental experience, 
+              We value your feedback! If you have ideas for new features or improvements to enhance your dental experience,
               we'd love to hear from you.
             </AlertDescription>
-            
-            <Button 
-              variant="ghost" 
-              size="sm" 
+
+            <Button
+              variant="ghost"
+              size="sm"
               className={`mt-4 ${isDark ? 'text-white hover:bg-white/10' : 'text-peak-black hover:bg-black/5'}`}
             >
               <span>Request a Feature</span>

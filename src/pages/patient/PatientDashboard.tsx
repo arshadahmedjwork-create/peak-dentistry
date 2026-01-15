@@ -7,8 +7,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-import { Calendar, FileText, CreditCard, User, Clock, MapPin } from 'lucide-react';
+import { Calendar, FileText, CreditCard, User, Clock, MapPin, X } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 const PatientDashboard = () => {
   const { user, loading: authLoading } = useAuth();
@@ -18,6 +21,14 @@ const PatientDashboard = () => {
   const [treatments, setTreatments] = useState<any[]>([]);
   const [invoices, setInvoices] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+
+  // Dialog states
+  const [rescheduleDialogOpen, setRescheduleDialogOpen] = useState(false);
+  const [cancelDialogOpen, setCancelDialogOpen] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState<any>(null);
+  const [newDate, setNewDate] = useState('');
+  const [newTime, setNewTime] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -76,6 +87,85 @@ const PatientDashboard = () => {
     if (invoicesData) setInvoices(invoicesData);
 
     setLoading(false);
+  };
+
+  const handleRescheduleClick = (appointment: any) => {
+    setSelectedAppointment(appointment);
+    setNewDate(appointment.appointment_date);
+    setNewTime(appointment.appointment_time || '');
+    setRescheduleDialogOpen(true);
+  };
+
+  const handleCancelClick = (appointment: any) => {
+    setSelectedAppointment(appointment);
+    setCancelDialogOpen(true);
+  };
+
+  const handleRescheduleSubmit = async () => {
+    if (!selectedAppointment || !newDate || !newTime) {
+      toast({
+        title: "Missing Information",
+        description: "Please select both a new date and time.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const { error } = await supabase
+      .from('appointments')
+      .update({
+        appointment_date: newDate,
+        appointment_time: newTime,
+        status: 'pending_confirmation'
+      })
+      .eq('id', selectedAppointment.id);
+
+    setIsSubmitting(false);
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Failed to reschedule appointment. Please try again.",
+        variant: "destructive"
+      });
+    } else {
+      toast({
+        title: "Appointment Rescheduled",
+        description: "Your appointment has been rescheduled and is pending confirmation.",
+      });
+      setRescheduleDialogOpen(false);
+      fetchDashboardData();
+    }
+  };
+
+  const handleCancelConfirm = async () => {
+    if (!selectedAppointment) return;
+
+    setIsSubmitting(true);
+
+    const { error } = await supabase
+      .from('appointments')
+      .update({ status: 'cancelled' })
+      .eq('id', selectedAppointment.id);
+
+    setIsSubmitting(false);
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Failed to cancel appointment. Please try again.",
+        variant: "destructive"
+      });
+    } else {
+      toast({
+        title: "Appointment Cancelled",
+        description: "Your appointment has been successfully cancelled.",
+      });
+      setCancelDialogOpen(false);
+      fetchDashboardData();
+    }
   };
 
   if (authLoading || loading) {
@@ -196,20 +286,20 @@ const PatientDashboard = () => {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <span className="font-semibold">{upcomingAppointment.appointment_type}</span>
-                        <Badge 
+                        <Badge
                           variant={
                             upcomingAppointment.status === 'pending_confirmation' ? 'outline' :
-                            upcomingAppointment.status === 'confirmed' || upcomingAppointment.status === 'scheduled' ? 'default' :
-                            upcomingAppointment.status === 'completed' ? 'secondary' : 'outline'
+                              upcomingAppointment.status === 'confirmed' || upcomingAppointment.status === 'scheduled' ? 'default' :
+                                upcomingAppointment.status === 'completed' ? 'secondary' : 'outline'
                           }
                           className={
                             upcomingAppointment.status === 'pending_confirmation' ? 'border-amber-500 text-amber-600' : ''
                           }
                         >
-                          {upcomingAppointment.status === 'pending_confirmation' ? 'Awaiting Confirmation' : 
-                           upcomingAppointment.status === 'scheduled' ? 'Scheduled' :
-                           upcomingAppointment.status === 'confirmed' ? 'Confirmed' :
-                           upcomingAppointment.status === 'completed' ? 'Completed' : upcomingAppointment.status}
+                          {upcomingAppointment.status === 'pending_confirmation' ? 'Awaiting Confirmation' :
+                            upcomingAppointment.status === 'scheduled' ? 'Scheduled' :
+                              upcomingAppointment.status === 'confirmed' ? 'Confirmed' :
+                                upcomingAppointment.status === 'completed' ? 'Completed' : upcomingAppointment.status}
                         </Badge>
                       </div>
                       <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
@@ -229,10 +319,20 @@ const PatientDashboard = () => {
                     </div>
                   </div>
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" className="flex-1">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex-1"
+                      onClick={() => handleRescheduleClick(upcomingAppointment)}
+                    >
                       Reschedule
                     </Button>
-                    <Button variant="outline" size="sm" className="flex-1">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 text-red-600 hover:text-red-700 hover:bg-red-50"
+                      onClick={() => handleCancelClick(upcomingAppointment)}
+                    >
                       Cancel
                     </Button>
                   </div>
@@ -294,9 +394,9 @@ const PatientDashboard = () => {
               <Calendar className="h-6 w-6 mb-2" />
               Book Appointment
             </Button>
-            <Button variant="outline" className="h-auto py-4 flex-col" onClick={() => navigate('/patient/profile')}>
-              <User className="h-6 w-6 mb-2" />
-              Update Profile
+            <Button variant="outline" className="h-auto py-4 flex-col" onClick={() => navigate('/contact')}>
+              <MapPin className="h-6 w-6 mb-2" />
+              Contact Us
             </Button>
             <Button variant="outline" className="h-auto py-4 flex-col">
               <CreditCard className="h-6 w-6 mb-2" />
@@ -305,6 +405,75 @@ const PatientDashboard = () => {
           </CardContent>
         </Card>
       </div>
+
+      {/* Reschedule Dialog */}
+      <Dialog open={rescheduleDialogOpen} onOpenChange={setRescheduleDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Reschedule Appointment</DialogTitle>
+            <DialogDescription>
+              Select a new date and time for your appointment.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="new-date">New Date</Label>
+              <Input
+                id="new-date"
+                type="date"
+                value={newDate}
+                onChange={(e) => setNewDate(e.target.value)}
+                min={new Date().toISOString().split('T')[0]}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="new-time">New Time</Label>
+              <Input
+                id="new-time"
+                type="time"
+                value={newTime}
+                onChange={(e) => setNewTime(e.target.value)}
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setRescheduleDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleRescheduleSubmit} disabled={isSubmitting}>
+              {isSubmitting ? 'Rescheduling...' : 'Confirm Reschedule'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Cancel Dialog */}
+      <Dialog open={cancelDialogOpen} onOpenChange={setCancelDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Cancel Appointment</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to cancel this appointment? This action cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          {selectedAppointment && (
+            <div className="py-4 bg-muted/50 rounded-lg p-4">
+              <p className="font-medium">{selectedAppointment.appointment_type}</p>
+              <p className="text-sm text-muted-foreground">
+                {new Date(selectedAppointment.appointment_date).toLocaleDateString()} at {selectedAppointment.appointment_time}
+              </p>
+            </div>
+          )}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setCancelDialogOpen(false)}>
+              Keep Appointment
+            </Button>
+            <Button variant="destructive" onClick={handleCancelConfirm} disabled={isSubmitting}>
+              {isSubmitting ? 'Cancelling...' : 'Yes, Cancel Appointment'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </Layout>
   );
 };

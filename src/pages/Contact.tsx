@@ -14,7 +14,7 @@ const Contact = () => {
       <section className={`pt-32 pb-16 ${isDark ? 'bg-peak-gray-900' : 'bg-peak-gray-100'}`}>
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-5xl font-medium mb-6">Contact Us</h1>
+            <h1 className={`text-5xl font-medium mb-6 ${isDark ? 'text-white' : ''}`}>Contact Us</h1>
             <p className={`text-xl mb-8 ${isDark ? 'text-gray-300' : 'text-peak-gray-700'}`}>
               Have questions or ready to book your appointment? Get in touch with our team.
             </p>
@@ -23,7 +23,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Information Section */}
-      <section className="section-padding">
+      <section className={`section-padding ${isDark ? 'bg-peak-gray-800' : ''}`}>
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
             <div className="space-y-8">
@@ -33,59 +33,67 @@ const Contact = () => {
               />
               
               <div className="space-y-6">
-                <div className="flex items-start">
-                  <MapPin className="text-peak-black mr-4 shrink-0" size={24} />
+                <div className="flex items-center gap-4">
+                  <div className={`p-3 rounded-full ${isDark ? 'bg-peak-gray-700' : 'bg-peak-gray-100'}`}>
+                    <MapPin className={`${isDark ? 'text-white' : 'text-peak-black'} shrink-0`} size={24} />
+                  </div>
                   <div>
-                    <h4 className="font-medium mb-1">Location</h4>
-                    <p className="text-peak-gray-600">B38, Prithvi Avenue 2nd Street, Abiramapuram, Alwarpet, Chennai – 600018</p>
+                    <h4 className={`font-medium mb-1 ${isDark ? 'text-white' : ''}`}>Location</h4>
+                    <p className={`${isDark ? 'text-gray-300' : 'text-peak-gray-600'}`}>B38, Prithvi Avenue 2nd Street, Abiramapuram, Alwarpet, Chennai – 600018</p>
                   </div>
                 </div>
                 
-                <div className="flex items-start">
-                  <Phone className="text-peak-black mr-4 shrink-0" size={24} />
+                <div className="flex items-center gap-4">
+                  <div className={`p-3 rounded-full ${isDark ? 'bg-peak-gray-700' : 'bg-peak-gray-100'}`}>
+                    <Phone className={`${isDark ? 'text-white' : 'text-peak-black'} shrink-0`} size={24} />
+                  </div>
                   <div>
-                    <h4 className="font-medium mb-1">Phone</h4>
-                    <p className="text-peak-gray-600">
-                      <a href="tel:+917373044044" className="hover:text-peak-black transition-colors">+91 73 73 044 044</a>
+                    <h4 className={`font-medium mb-1 ${isDark ? 'text-white' : ''}`}>Phone</h4>
+                    <p className={`${isDark ? 'text-gray-300' : 'text-peak-gray-600'}`}>
+                      <a href="tel:+917373044044" className={`${isDark ? 'hover:text-white' : 'hover:text-peak-black'} transition-colors`}>+91 73 73 044 044</a>
                     </p>
                   </div>
                 </div>
                 
-                <div className="flex items-start">
-                  <Mail className="text-peak-black mr-4 shrink-0" size={24} />
+                <div className="flex items-center gap-4">
+                  <div className={`p-3 rounded-full ${isDark ? 'bg-peak-gray-700' : 'bg-peak-gray-100'}`}>
+                    <Mail className={`${isDark ? 'text-white' : 'text-peak-black'} shrink-0`} size={24} />
+                  </div>
                   <div>
-                    <h4 className="font-medium mb-1">Email</h4>
-                    <p className="text-peak-gray-600">
-                      <a href="mailto:contact@peak-dentistry.com" className="hover:text-peak-black transition-colors">contact@peak-dentistry.com</a>
+                    <h4 className={`font-medium mb-1 ${isDark ? 'text-white' : ''}`}>Email</h4>
+                    <p className={`${isDark ? 'text-gray-300' : 'text-peak-gray-600'}`}>
+                      <a href="mailto:contact@peak-dentistry.com" className={`${isDark ? 'hover:text-white' : 'hover:text-peak-black'} transition-colors`}>contact@peak-dentistry.com</a>
                     </p>
                   </div>
                 </div>
                 
-                <div className="flex items-start">
-                  <Clock className="text-peak-black mr-4 shrink-0" size={24} />
+                <div className="flex items-center gap-4">
+                  <div className={`p-3 rounded-full ${isDark ? 'bg-peak-gray-700' : 'bg-peak-gray-100'}`}>
+                    <Clock className={`${isDark ? 'text-white' : 'text-peak-black'} shrink-0`} size={24} />
+                  </div>
                   <div>
-                    <h4 className="font-medium mb-1">Hours</h4>
-                    <p className="text-peak-gray-600">Mon–Fri: 10:30 AM – 7:30 PM</p>
-                    <p className="text-peak-gray-600">Sat: 10:30 AM – 6:00 PM</p>
-                    <p className="text-peak-gray-600">Sunday: Closed</p>
+                    <h4 className={`font-medium mb-1 ${isDark ? 'text-white' : ''}`}>Hours</h4>
+                    <p className={`${isDark ? 'text-gray-300' : 'text-peak-gray-600'}`}>Mon–Fri: 10:30 AM – 7:30 PM</p>
+                    <p className={`${isDark ? 'text-gray-300' : 'text-peak-gray-600'}`}>Sat: 10:30 AM – 6:00 PM</p>
+                    <p className={`${isDark ? 'text-gray-300' : 'text-peak-gray-600'}`}>Sunday: Closed</p>
                   </div>
                 </div>
               </div>
               
               <div>
-                <h4 className="font-medium mb-2">Connect With Us</h4>
+                <h4 className={`font-medium mb-4 ${isDark ? 'text-white' : ''}`}>Connect With Us</h4>
                 <div className="flex space-x-4">
-                  <a href="https://facebook.com" className={`${isDark ? 'bg-peak-gray-800 hover:bg-peak-gray-700' : 'bg-peak-gray-200 hover:bg-peak-gray-300'} p-3 rounded-full transition-colors`}>
-                    <Facebook size={20} />
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className={`${isDark ? 'bg-peak-gray-700 hover:bg-peak-gray-600' : 'bg-peak-gray-200 hover:bg-peak-gray-300'} p-3 rounded-full transition-colors`}>
+                    <Facebook size={20} className={isDark ? 'text-white' : ''} />
                   </a>
-                  <a href="https://instagram.com" className={`${isDark ? 'bg-peak-gray-800 hover:bg-peak-gray-700' : 'bg-peak-gray-200 hover:bg-peak-gray-300'} p-3 rounded-full transition-colors`}>
-                    <Instagram size={20} />
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={`${isDark ? 'bg-peak-gray-700 hover:bg-peak-gray-600' : 'bg-peak-gray-200 hover:bg-peak-gray-300'} p-3 rounded-full transition-colors`}>
+                    <Instagram size={20} className={isDark ? 'text-white' : ''} />
                   </a>
-                  <a href="https://linkedin.com" className={`${isDark ? 'bg-peak-gray-800 hover:bg-peak-gray-700' : 'bg-peak-gray-200 hover:bg-peak-gray-300'} p-3 rounded-full transition-colors`}>
-                    <Linkedin size={20} />
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={`${isDark ? 'bg-peak-gray-700 hover:bg-peak-gray-600' : 'bg-peak-gray-200 hover:bg-peak-gray-300'} p-3 rounded-full transition-colors`}>
+                    <Linkedin size={20} className={isDark ? 'text-white' : ''} />
                   </a>
-                  <a href="https://twitter.com" className={`${isDark ? 'bg-peak-gray-800 hover:bg-peak-gray-700' : 'bg-peak-gray-200 hover:bg-peak-gray-300'} p-3 rounded-full transition-colors`}>
-                    <Twitter size={20} />
+                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className={`${isDark ? 'bg-peak-gray-700 hover:bg-peak-gray-600' : 'bg-peak-gray-200 hover:bg-peak-gray-300'} p-3 rounded-full transition-colors`}>
+                    <Twitter size={20} className={isDark ? 'text-white' : ''} />
                   </a>
                 </div>
               </div>
@@ -95,13 +103,19 @@ const Contact = () => {
       </section>
 
       {/* Map Section */}
-      <section className="py-12">
+      <section className={`py-12 ${isDark ? 'bg-peak-gray-900' : ''}`}>
         <div className="container-custom">
           <div className="rounded-xl overflow-hidden shadow-lg h-[400px]">
-            {/* Placeholder for Google Map - would be replaced with actual map implementation */}
-            <div className="w-full h-full bg-peak-gray-300 flex items-center justify-center">
-              <p className="text-peak-gray-700 font-medium">Google Map Location</p>
-            </div>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.0876089430395!2d80.25612731528!3d13.033940917058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526779e1d6f3a1%3A0x6b8e8c5a9b8a8e0a!2sAbiramapuram%2C%20Alwarpet%2C%20Chennai%2C%20Tamil%20Nadu%20600018!5e0!3m2!1sen!2sin!4v1610000000000!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="PEAK Dentistry Location"
+            />
           </div>
         </div>
       </section>
