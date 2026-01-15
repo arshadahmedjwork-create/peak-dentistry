@@ -26,7 +26,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
   return (
     <div className="glass h-full p-8 rounded-xl transition-all duration-500 group hover-glow premium-card interactive-card flex flex-col">
-      <div className={`p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6 pulse-soft hover-rotate ${isDark ? 'bg-peak-gray-700' : 'bg-peak-gray-100'}`}>
+      <div className={`p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6 ${isDark ? 'bg-peak-gray-700' : 'bg-peak-gray-100'}`}>
         {icon}
       </div>
 

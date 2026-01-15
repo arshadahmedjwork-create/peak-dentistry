@@ -26,6 +26,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const Signup = lazy(() => import("./pages/auth/Signup"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
+const ResetPassword = lazy(() => import("./pages/auth/ResetPassword"));
 
 // Admin Portal Pages
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
@@ -82,10 +83,10 @@ const App = () => {
     videoPreload.href = 'https://cdn.pixabay.com/vimeo/149019283/smiles-2165.mp4?width=1280&hash=eb9bca5ee21e9bfacc2506a6f54e6ecd7c63c2a7';
     videoPreload.as = 'video';
     document.head.appendChild(videoPreload);
-    
+
     // Add smooth scroll behavior to HTML
     document.documentElement.style.scrollBehavior = 'smooth';
-    
+
     // Preconnect to common domains
     ['https://fonts.googleapis.com', 'https://fonts.gstatic.com', 'https://cdn.pixabay.com'].forEach(domain => {
       const link = document.createElement('link');
@@ -93,7 +94,7 @@ const App = () => {
       link.href = domain;
       document.head.appendChild(link);
     });
-    
+
     return () => {
       document.head.removeChild(videoPreload);
     };
@@ -108,90 +109,91 @@ const App = () => {
               <ToastWrapper />
               <Sonner />
               <BrowserRouter>
-              <Suspense fallback={<PageLoader />}>
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/services" element={<Services />} />
-                  <Route path="/blog" element={<Blog />} />
-                  <Route path="/contact" element={<Contact />} />
-                  
-                  {/* Auth Routes */}
-                  <Route path="/auth/login" element={<Login />} />
-                  <Route path="/auth/signup" element={<Signup />} />
-                  <Route path="/auth/forgot-password" element={<ForgotPassword />} />
-                  
-                  {/* Patient Portal Routes */}
-                  <Route path="/patient-portal" element={<PatientPortal />} />
-                  <Route path="/patient/dashboard" element={
-                    <ProtectedRoute>
-                      <PatientDashboard />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/patient/book-appointment" element={
-                    <ProtectedRoute>
-                      <BookAppointment />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/patient/profile" element={
-                    <ProtectedRoute>
-                      <PatientProfile />
-                    </ProtectedRoute>
-                  } />
-                  
-                  {/* Admin Portal Routes */}
-                  <Route path="/admin" element={<AdminLogin />} />
-                  <Route path="/admin/login" element={<AdminLogin />} />
-                  <Route path="/admin/forgot-password" element={<AdminForgotPassword />} />
-                  <Route path="/admin/dashboard" element={
-                    <ProtectedRoute requireAdmin>
-                      <AdminDashboardConnected />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/admin/manage-admins" element={
-                    <ProtectedRoute requireAdmin>
-                      <AdminManagement />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/admin/patients" element={
-                    <ProtectedRoute requireAdmin>
-                      <PatientDirectory />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/admin/patients/:id" element={
-                    <ProtectedRoute requireAdmin>
-                      <PatientDetails />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/admin/appointments" element={
-                    <ProtectedRoute requireAdmin>
-                      <AppointmentCalendar />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/admin/billing" element={
-                    <ProtectedRoute requireAdmin>
-                      <BillingManagement />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/admin/reports" element={
-                    <ProtectedRoute requireAdmin>
-                      <ReportsGenerator />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/admin/settings" element={
-                    <ProtectedRoute requireAdmin>
-                      <AdminSettings />
-                    </ProtectedRoute>
-                  } />
-                  
-                  {/* Legal Pages */}
-                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                  <Route path="/terms" element={<TermsConditions />} />
-                  
-                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </Suspense>
+                <Suspense fallback={<PageLoader />}>
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/services" element={<Services />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/contact" element={<Contact />} />
+
+                    {/* Auth Routes */}
+                    <Route path="/auth/login" element={<Login />} />
+                    <Route path="/auth/signup" element={<Signup />} />
+                    <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+                    <Route path="/reset-password" element={<ResetPassword />} />
+
+                    {/* Patient Portal Routes */}
+                    <Route path="/patient-portal" element={<PatientPortal />} />
+                    <Route path="/patient/dashboard" element={
+                      <ProtectedRoute>
+                        <PatientDashboard />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/patient/book-appointment" element={
+                      <ProtectedRoute>
+                        <BookAppointment />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/patient/profile" element={
+                      <ProtectedRoute>
+                        <PatientProfile />
+                      </ProtectedRoute>
+                    } />
+
+                    {/* Admin Portal Routes */}
+                    <Route path="/admin" element={<AdminLogin />} />
+                    <Route path="/admin/login" element={<AdminLogin />} />
+                    <Route path="/admin/forgot-password" element={<AdminForgotPassword />} />
+                    <Route path="/admin/dashboard" element={
+                      <ProtectedRoute requireAdmin>
+                        <AdminDashboardConnected />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/admin/manage-admins" element={
+                      <ProtectedRoute requireAdmin>
+                        <AdminManagement />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/admin/patients" element={
+                      <ProtectedRoute requireAdmin>
+                        <PatientDirectory />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/admin/patients/:id" element={
+                      <ProtectedRoute requireAdmin>
+                        <PatientDetails />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/admin/appointments" element={
+                      <ProtectedRoute requireAdmin>
+                        <AppointmentCalendar />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/admin/billing" element={
+                      <ProtectedRoute requireAdmin>
+                        <BillingManagement />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/admin/reports" element={
+                      <ProtectedRoute requireAdmin>
+                        <ReportsGenerator />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/admin/settings" element={
+                      <ProtectedRoute requireAdmin>
+                        <AdminSettings />
+                      </ProtectedRoute>
+                    } />
+
+                    {/* Legal Pages */}
+                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                    <Route path="/terms" element={<TermsConditions />} />
+
+                    {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </Suspense>
               </BrowserRouter>
             </ErrorBoundary>
           </TooltipProvider>
